@@ -4,17 +4,16 @@ public:
     string longestCommonPrefix(vector<string>& strs)
     {
         string common = "";
-        for (int letter = 0; letter < strs[0].length(); letter++)
+
+        sort(strs.begin(), strs.end());
+        string first = strs[0], last = strs[strs.size() - 1];
+
+        for (int i = 0; i < min(first.size(), last.size()); i++)
         {
-            char currentChar = strs[0][letter];
-            for (int word = 1; word < strs.size(); word++)
-            {
-                if (strs[word][letter] != currentChar)
-                {
-                    return common;
-                }
-            }
-            common += currentChar;
+            if (first[i] != last[i])
+                return common;
+
+            common += first[i];
         }
         return common;
     }
